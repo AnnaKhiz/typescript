@@ -81,11 +81,10 @@ var Group = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Group.prototype.getPerformanceRating = function () {
-        return this.levelName;
-    };
     Group.prototype.showPerformance = function () {
-        return this.students.sort(function (a, b) { return b.getPerformanceRating() - a.getPerformanceRating(); });
+        return this.students.toSorted(function (a, b) {
+            return b.getPerformanceRating() - a.getPerformanceRating();
+        });
     };
     return Group;
 }());

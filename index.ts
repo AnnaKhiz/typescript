@@ -50,13 +50,13 @@ class Level {
 class Group {
     _students: any = [];
     directionName: string;
-    levelName: number;
+    levelName: string;
 
     get students(): any {
         return this._students;
     }
 
-    constructor(directionName: string, levelName: number) {
+    constructor(directionName: string, levelName: string) {
         this.directionName = directionName;
         this.levelName = levelName;
     }
@@ -65,16 +65,14 @@ class Group {
         this._students.push(student);
     }
 
-    getPerformanceRating(): number {
-        return this.levelName
-    }
-
     showPerformance(): any {
-        return this.students.sort(
-          (a: {getPerformanceRating: () => number}, b: {getPerformanceRating: () => number}) => b.getPerformanceRating() - a.getPerformanceRating()
+        return this.students.toSorted(
+          (a: { getPerformanceRating: () => number }, b: { getPerformanceRating: () => number }) =>
+                        b.getPerformanceRating() - a.getPerformanceRating()
         );
     }
 }
+
 
 class Student {
     grades: any = {};
