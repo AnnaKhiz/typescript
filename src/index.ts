@@ -1,80 +1,149 @@
-const BadgeSize = {
-	single: '4x3',
-	double: '4x6'
+
+//1. Реализовала 2 варианта 1 задания, поскольку не уверена правильно ли я поняла задание.
+// Второй закомментирован ниже.
+
+// Через класс
+
+interface ICalculator {
+	sum(a: number, b: number): number;
+	subtraction(a: number, b:number): number;
+	division(a: number, b:number): number | string;
+	multiplication(a: number, b:number): number;
 }
 
-const Print = {
-	fast: 'zpl',
-	standart: 'color',
+class Calculation implements ICalculator {
+
+	sum(a: number, b: number): number {
+		return a + b;
+	};
+
+	subtraction(a: number, b:number): number {
+		return a - b;
+	};
+
+	division(a: number, b:number): number | string {
+		if (b === 0) {
+			return 'Dividing by 0 is not allowed';
+		} else {
+			return a / b;
+		}
+	};
+
+	multiplication(a: number, b:number): number {
+		return a * b
+	};
+
 }
 
-enum BadgeTypesEnum {
-	COLOR = 'color',
-	MONO = 'mono'
+let sum = new Calculation;
+sum.sum(1,2);
+sum.subtraction(4,2);
+sum.multiplication(8,4);
+sum.division(10, 2);
+
+//Через функции
+
+// interface ICalculator {
+// 	(a: number, b: number): number | string;
+// }
+//
+// const sum = function(a: number, b: number): number {
+// 	return a + b;
+// }
+// const subtraction: ICalculator = function (a: number, b: number): number {
+// 	return a - b;
+// }
+//
+// const division: ICalculator = function (a: number, b: number): number | string {
+// 	if (b === 0) {
+// 		return 'You can not div 0';
+// 	} else {
+// 		return a / b;
+// 	}
+// }
+//
+// const multiplication: ICalculator = function (a: number, b: number): number {
+// 	return a * b;
+// }
+//
+// sum(1, 2);
+// subtraction(4,2);
+// division(8,2);
+// multiplication(5,3);
+
+
+// Задание 2
+interface IAuthor {
+	name: string;
+	age: number;
+	country: string;
+	isAlive: boolean;
 }
 
-type BadgeSizeType = keyof typeof BadgeSize;
-type PrintType = keyof typeof Print;
-
-type LiteralType = `${BadgeSizeType}_${PrintType}`;
-
-
-type Grades = {
-	workName: string,
-	mark: 0 | 1
+interface IBook extends IAuthor {
+	idBook: number;
+	title: string;
+	pages: number;
+	binding: string;
+	language: string;
+	isIllustrated: boolean;
 }
 
-type Visits = {
-	lesson: string,
-	present: boolean
+interface IBookService extends IBook {
+	getAuthorInfo(name: string): IAuthor;
+	checkAuthorIsAlive(name: string, country: string): boolean;
+	getBookTitle(idBook: number): string;
+	checkIllustration(idBook: number, title: string): boolean;
 }
 
-class Student {
-	badgeTypeMap = new Map<LiteralType, BadgeTypesEnum>([
-		['single_fast', BadgeTypesEnum.COLOR],
-		['single_standart', BadgeTypesEnum.COLOR],
-		['double_fast', BadgeTypesEnum.MONO],
-		['double_standart', BadgeTypesEnum.MONO]
-	])
+class BookService implements IBookService {
+	idBook: number;
+	title: string;
+	pages: number;
+	binding: string;
+	language: string;
+	isIllustrated: boolean;
+	name: string;
+	age: number;
+	country: string;
+	isAlive: boolean;
 
-	_firstName: string;
-	_lastName: string;
-	_birthYear: number;
-	_grades: Grades[] = []; // Опишите, как объект у которого есть поле workName и mark(оценка может быть выполненно или нет)
-	_visits: Visits[] = []; // Опишите, как объект у которого есть поле lesson (любое имя) и present
-
-	get fullName(): string {
-		return `${this._lastName} ${this._firstName}`;
-	}
-	
-	set fullName(value: string) {
-		[this._lastName, this._firstName] = value.split(' ');
-	}
-
-	get age(): number {
-		return new Date().getFullYear() - this._birthYear;
-	}
-
-	constructor(firstName: string, lastName: string, birthYear: number) {
-		this._firstName = firstName;
-		this._lastName = lastName;
-		this._birthYear = birthYear;
+	constructor(idBook: number, title: string, pages: number, binding: string, language: string, isIllustrated: boolean, name: string,
+							age: number, country: string, isAlive: boolean) {
+		this.idBook = idBook;
+		this.title = title;
+		this.pages = pages;
+		this.binding = binding;
+		this.language = language;
+		this.isIllustrated = isIllustrated;
+		this.name = name;
+		this.age = age;
+		this.country = country;
+		this.isAlive = isAlive;
 	}
 
-	setGrade(grade: Grades) {
-		this._grades.push(grade);
+	getAuthorInfo(name: string): IAuthor {
+		return {
+			name: this.name,
+			age: this.age,
+			country: this.country,
+			isAlive: this.isAlive,
+		}
 	}
-
-	setVisit(visit: Visits) {
-		this._visits.push(visit);
+	checkAuthorIsAlive(name: string, country: string): boolean {
+		return this.isAlive;
 	}
-
-	getPerformanceRating(): number {
-		if (!this._grades.length) return 0;
-
-		const averageGrade = this._grades.reduce((sum, grade) => sum + grade.mark, 0) / this._grades.length;
-		const attendancePercentage = (this._visits.filter(present => present).length / this._visits.length) * 100;
-
-		return (averageGrade + attendancePercentage) / 2;
+	getBookTitle(idBook: number): string {
+		return this.title;
+	}
+	checkIllustration(idBook: number, title: string): boolean {
+		return this.isIllustrated;
 	}
 }
+
+let bookStore = new BookService(125478, 'Carrie', 232, 'hard cover', 'en', true, 'Stephen King',76, 'USA', true);
+bookStore.getBookTitle(125478);
+bookStore.checkAuthorIsAlive('Stephen King', 'USA');
+bookStore.checkIllustration(125478, 'Carrie');
+bookStore.getAuthorInfo('Stephen King');
+

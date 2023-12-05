@@ -1,53 +1,70 @@
-const BadgeSize = {
-    single: '4x3',
-    double: '4x6'
-};
-const Print = {
-    fast: 'zpl',
-    standart: 'color',
-};
-var BadgeTypesEnum;
-(function (BadgeTypesEnum) {
-    BadgeTypesEnum["COLOR"] = "color";
-    BadgeTypesEnum["MONO"] = "mono";
-})(BadgeTypesEnum || (BadgeTypesEnum = {}));
-class Student {
-    badgeTypeMap = new Map([
-        ['single_fast', BadgeTypesEnum.COLOR],
-        ['single_standart', BadgeTypesEnum.COLOR],
-        ['double_fast', BadgeTypesEnum.MONO],
-        ['double_standart', BadgeTypesEnum.MONO]
-    ]);
-    _firstName;
-    _lastName;
-    _birthYear;
-    _grades = []; // Опишите, как объект у которого есть поле workName и mark(оценка может быть выполненно или нет)
-    _visits = []; // Опишите, как объект у которого есть поле lesson (любое имя) и present
-    get fullName() {
-        return `${this._lastName} ${this._firstName}`;
+//1. Реализовала 2 варианта 1 задания, поскольку не уверена правильно ли я поняла задание.
+// Второй закомментирован ниже.
+var Calculation = /** @class */ (function () {
+    function Calculation() {
     }
-    set fullName(value) {
-        [this._lastName, this._firstName] = value.split(' ');
+    Calculation.prototype.sum = function (a, b) {
+        return a + b;
+    };
+    ;
+    Calculation.prototype.subtraction = function (a, b) {
+        return a - b;
+    };
+    ;
+    Calculation.prototype.division = function (a, b) {
+        if (b === 0) {
+            return 'Dividing by 0 is not allowed';
+        }
+        else {
+            return a / b;
+        }
+    };
+    ;
+    Calculation.prototype.multiplication = function (a, b) {
+        return a * b;
+    };
+    ;
+    return Calculation;
+}());
+var sum = new Calculation;
+sum.sum(1, 2);
+sum.subtraction(4, 2);
+sum.multiplication(8, 4);
+sum.division(10, 2);
+var BookService = /** @class */ (function () {
+    function BookService(idBook, title, pages, binding, language, isIllustrated, name, age, country, isAlive) {
+        this.idBook = idBook;
+        this.title = title;
+        this.pages = pages;
+        this.binding = binding;
+        this.language = language;
+        this.isIllustrated = isIllustrated;
+        this.name = name;
+        this.age = age;
+        this.country = country;
+        this.isAlive = isAlive;
     }
-    get age() {
-        return new Date().getFullYear() - this._birthYear;
-    }
-    constructor(firstName, lastName, birthYear) {
-        this._firstName = firstName;
-        this._lastName = lastName;
-        this._birthYear = birthYear;
-    }
-    setGrade(grade) {
-        this._grades.push(grade);
-    }
-    setVisit(visit) {
-        this._visits.push(visit);
-    }
-    getPerformanceRating() {
-        if (!this._grades.length)
-            return 0;
-        const averageGrade = this._grades.reduce((sum, grade) => sum + grade.mark, 0) / this._grades.length;
-        const attendancePercentage = (this._visits.filter(present => present).length / this._visits.length) * 100;
-        return (averageGrade + attendancePercentage) / 2;
-    }
-}
+    BookService.prototype.getAuthorInfo = function (name) {
+        return {
+            name: this.name,
+            age: this.age,
+            country: this.country,
+            isAlive: this.isAlive,
+        };
+    };
+    BookService.prototype.checkAuthorIsAlive = function (name, country) {
+        return this.isAlive;
+    };
+    BookService.prototype.getBookTitle = function (idBook) {
+        return this.title;
+    };
+    BookService.prototype.checkIllustration = function (idBook, title) {
+        return this.isIllustrated;
+    };
+    return BookService;
+}());
+var bookStore = new BookService(125478, 'Carrie', 232, 'hard cover', 'en', true, 'Stephen King', 76, 'USA', true);
+bookStore.getBookTitle(125478);
+bookStore.checkAuthorIsAlive('Stephen King', 'USA');
+bookStore.checkIllustration(125478, 'Carrie');
+bookStore.getAuthorInfo('Stephen King');
