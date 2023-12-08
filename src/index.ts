@@ -1,6 +1,8 @@
 interface ICharacteristics {
-	name: string;
-	color: string;
+	readonly name: string;
+	readonly color: string;
+	calculateArea(a: number, b?: number, c?: number): number;
+	print?(): void;
 }
 
 class Circle implements ICharacteristics {
