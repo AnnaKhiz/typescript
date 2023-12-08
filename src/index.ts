@@ -1,149 +1,58 @@
-
-//1. Реализовала 2 варианта 1 задания, поскольку не уверена правильно ли я поняла задание.
-// Второй закомментирован ниже.
-
-// Через класс
-
-interface ICalculator {
-	sum(a: number, b: number): number;
-	subtraction(a: number, b:number): number;
-	division(a: number, b:number): number | string;
-	multiplication(a: number, b:number): number;
-}
-
-class Calculation implements ICalculator {
-
-	sum(a: number, b: number): number {
-		return a + b;
-	};
-
-	subtraction(a: number, b:number): number {
-		return a - b;
-	};
-
-	division(a: number, b:number): number | string {
-		if (b === 0) {
-			return 'Dividing by 0 is not allowed';
-		} else {
-			return a / b;
-		}
-	};
-
-	multiplication(a: number, b:number): number {
-		return a * b
-	};
-
-}
-
-let sum = new Calculation;
-sum.sum(1,2);
-sum.subtraction(4,2);
-sum.multiplication(8,4);
-sum.division(10, 2);
-
-//Через функции
-
-// interface ICalculator {
-// 	(a: number, b: number): number | string;
-// }
-//
-// const sum = function(a: number, b: number): number {
-// 	return a + b;
-// }
-// const subtraction: ICalculator = function (a: number, b: number): number {
-// 	return a - b;
-// }
-//
-// const division: ICalculator = function (a: number, b: number): number | string {
-// 	if (b === 0) {
-// 		return 'You can not div 0';
-// 	} else {
-// 		return a / b;
-// 	}
-// }
-//
-// const multiplication: ICalculator = function (a: number, b: number): number {
-// 	return a * b;
-// }
-//
-// sum(1, 2);
-// subtraction(4,2);
-// division(8,2);
-// multiplication(5,3);
-
-
-// Задание 2
-interface IAuthor {
+interface ICharacteristics {
 	name: string;
-	age: number;
-	country: string;
-	isAlive: boolean;
+	color: string;
 }
 
-interface IBook extends IAuthor {
-	idBook: number;
-	title: string;
-	pages: number;
-	binding: string;
-	language: string;
-	isIllustrated: boolean;
+class Circle implements ICharacteristics {
+	public readonly name: string = 'circle';
+	public readonly color: string = 'red';
+
+	public calculateArea(r: number): number {
+		return Math.PI * Math.pow(r, 2);
+	};
 }
 
-interface IBookService extends IBook {
-	getAuthorInfo(name: string): IAuthor;
-	checkAuthorIsAlive(name: string, country: string): boolean;
-	getBookTitle(idBook: number): string;
-	checkIllustration(idBook: number, title: string): boolean;
+class Rectangle implements ICharacteristics {
+	public readonly name: string = 'rectangle';
+	public readonly color: string = 'green';
+
+	public calculateArea(x: number, y: number): number {
+		this.#print();
+		return x * y;
+	};
+
+	#print(): void {
+		console.log('Rectangle area formula: S = x * y');
+	};
+
 }
 
-class BookService implements IBookService {
-	idBook: number;
-	title: string;
-	pages: number;
-	binding: string;
-	language: string;
-	isIllustrated: boolean;
-	name: string;
-	age: number;
-	country: string;
-	isAlive: boolean;
+class Square implements ICharacteristics {
+	public readonly name: string = 'square';
+	public readonly color: string = 'yellow';
 
-	constructor(idBook: number, title: string, pages: number, binding: string, language: string, isIllustrated: boolean, name: string,
-							age: number, country: string, isAlive: boolean) {
-		this.idBook = idBook;
-		this.title = title;
-		this.pages = pages;
-		this.binding = binding;
-		this.language = language;
-		this.isIllustrated = isIllustrated;
-		this.name = name;
-		this.age = age;
-		this.country = country;
-		this.isAlive = isAlive;
-	}
+	public calculateArea(x: number): number {
+		this.#print();
+		return Math.pow(x, 2);
+	};
 
-	getAuthorInfo(name: string): IAuthor {
-		return {
-			name: this.name,
-			age: this.age,
-			country: this.country,
-			isAlive: this.isAlive,
-		}
-	}
-	checkAuthorIsAlive(name: string, country: string): boolean {
-		return this.isAlive;
-	}
-	getBookTitle(idBook: number): string {
-		return this.title;
-	}
-	checkIllustration(idBook: number, title: string): boolean {
-		return this.isIllustrated;
-	}
+	#print(): void {
+		console.log('Square area formula: S = x * x');
+	};
 }
 
-let bookStore = new BookService(125478, 'Carrie', 232, 'hard cover', 'en', true, 'Stephen King',76, 'USA', true);
-bookStore.getBookTitle(125478);
-bookStore.checkAuthorIsAlive('Stephen King', 'USA');
-bookStore.checkIllustration(125478, 'Carrie');
-bookStore.getAuthorInfo('Stephen King');
+class Triangle implements ICharacteristics {
+	public readonly name: string = 'triangle';
+	public readonly color: string = 'blue';
 
+	public calculateArea(a: number, b: number, c: number): number {
+		let p = (a + b + c) / 2;
+		return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+	};
+
+}
+
+let circle = new Circle();
+let rectangle = new Rectangle();
+let square = new Square();
+let triangle = new Triangle();
