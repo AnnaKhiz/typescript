@@ -1,11 +1,18 @@
-interface ICharacteristics {
+interface IShape {
 	readonly name: string;
 	readonly color: string;
 	calculateArea(a: number, b?: number, c?: number): number;
-	print?(): void;
 }
 
-class Circle implements ICharacteristics {
+abstract class GeometryShape implements IShape {
+	public abstract name: string;
+	public abstract color: string;
+
+	public abstract calculateArea(a: number, b?: number, c?: number): number;
+}
+
+
+class Circle extends GeometryShape {
 	public readonly name: string = 'circle';
 	public readonly color: string = 'red';
 
@@ -14,36 +21,35 @@ class Circle implements ICharacteristics {
 	};
 }
 
-class Rectangle implements ICharacteristics {
+class Rectangle extends GeometryShape {
 	public readonly name: string = 'rectangle';
 	public readonly color: string = 'green';
-
-	public calculateArea(x: number, y: number): number {
-		this.#print();
-		return x * y;
-	};
 
 	#print(): void {
 		console.log('Rectangle area formula: S = x * y');
 	};
 
+	public calculateArea(x: number, y: number): number {
+		this.#print();
+		return x * y;
+	};
 }
 
-class Square implements ICharacteristics {
+class Square extends GeometryShape {
 	public readonly name: string = 'square';
 	public readonly color: string = 'yellow';
+
+	#print(): void {
+		console.log('Square area formula: S = x * x');
+	};
 
 	public calculateArea(x: number): number {
 		this.#print();
 		return Math.pow(x, 2);
 	};
-
-	#print(): void {
-		console.log('Square area formula: S = x * x');
-	};
 }
 
-class Triangle implements ICharacteristics {
+class Triangle extends GeometryShape {
 	public readonly name: string = 'triangle';
 	public readonly color: string = 'blue';
 
