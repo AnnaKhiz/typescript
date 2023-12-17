@@ -1,66 +1,49 @@
-interface IShape {
-	readonly name: string;
-	readonly color: string;
-	calculateArea(a: number, b?: number, c?: number): number;
+// Визначте інтерфейс, який використовує сигнатуру індексу з типами об'єднання.
+// Наприклад, тип значення для кожного ключа може бути число | рядок.
+
+interface ISomeInterface {
+	[key: string]: string | number;
 }
 
-abstract class GeometryShape implements IShape {
-	public abstract name: string;
-	public abstract color: string;
+// Створіть інтерфейс, у якому типи значень у сигнатурі індексу є функціями.
+// Ключами можуть бути рядки, а значеннями — функції, які приймають будь-які аргументи.
 
-	public abstract calculateArea(a: number, b?: number, c?: number): number;
+interface IFunction {
+	[key: string]: (...rest: any[]) => any;
+}
+
+// 	Опишіть інтерфейс, який використовує сигнатуру індексу для опису об'єкта, подібного до масиву.
+// 	Ключі повинні бути числами, а значення - певного типу.
+
+type ObjectValues = string | number | boolean;
+
+interface IArrayLike {
+	[key: number]: ObjectValues;
+}
+
+// Створіть інтерфейс з певними властивостями та індексною сигнатурою.
+// Наприклад, ви можете мати властивості типу name: string та індексну сигнатуру для додаткових динамічних властивостей.
+
+interface IDynamic {
+	name: string;
+	[key: string]: string;
+}
+
+// 	Створіть два інтерфейси, один з індексною сигнатурою, а інший розширює перший, додаючи специфічні властивості.
+// 	Напишіть функцію, яка отримує об'єкт з індексною сигнатурою і перевіряє, чи відповідають
+// 	значення певних ключів певним критеріям (наприклад, чи всі значення є числами).
+
+interface IBase {
+	[key: string]: number;
+}
+
+interface IChild extends IBase {
+	age: number;
+	birthYear: number;
+}
+
+function checkValues(obj: IBase): boolean {
+	return typeof obj['age'] === 'number';
 }
 
 
-class Circle extends GeometryShape {
-	public readonly name: string = 'circle';
-	public readonly color: string = 'red';
-
-	public calculateArea(r: number): number {
-		return Math.PI * Math.pow(r, 2);
-	};
-}
-
-class Rectangle extends GeometryShape {
-	public readonly name: string = 'rectangle';
-	public readonly color: string = 'green';
-
-	#print(): void {
-		console.log('Rectangle area formula: S = x * y');
-	};
-
-	public calculateArea(x: number, y: number): number {
-		this.#print();
-		return x * y;
-	};
-}
-
-class Square extends GeometryShape {
-	public readonly name: string = 'square';
-	public readonly color: string = 'yellow';
-
-	#print(): void {
-		console.log('Square area formula: S = x * x');
-	};
-
-	public calculateArea(x: number): number {
-		this.#print();
-		return Math.pow(x, 2);
-	};
-}
-
-class Triangle extends GeometryShape {
-	public readonly name: string = 'triangle';
-	public readonly color: string = 'blue';
-
-	public calculateArea(a: number, b: number, c: number): number {
-		let p = (a + b + c) / 2;
-		return Math.sqrt(p * (p - a) * (p - b) * (p - c));
-	};
-
-}
-
-let circle = new Circle();
-let rectangle = new Rectangle();
-let square = new Square();
-let triangle = new Triangle();
