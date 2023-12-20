@@ -17,17 +17,16 @@ function isString(value: unknown): value is string {
 // і фільтрує його так, щоб у підсумку в ньому залишилися тільки рядки.
 // Використовуйте захисника типу для цього завдання.
 
-function findString(value: any): void {
+function findString(value: unknown): void {
 	if (isStringInArray(value)) {
 		value.filter(elem => typeof elem === 'string');
 	} else {
 		throw new Error('Incorrect value type');
 	}
 }
-function isStringInArray(value: any): value is any[] {
+function isStringInArray(value: unknown): value is any[] {
 	return value instanceof Array;
 }
-
 
 // У вас є об'єкт, який може містити довільні властивості.
 // Напишіть функцію, яка приймає цей об'єкт і повертає значення однієї з
@@ -45,7 +44,7 @@ const user: IUser = {
 	sex: 'male',
 }
 
-function getUserInfo(user: any): string {
+function getUserInfo(user: unknown): string {
 	if (isUserObject(user)) {
 		return `User is ${user.sex}, his name is ${user.name}, ${user.age} years old.`
 	} else {
