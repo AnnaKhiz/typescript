@@ -14,7 +14,7 @@ enum ConditionStringTypesEnum {
 function filterArray<TType, TCondition>(array: Array<TType>, condition: TCondition): Array<TType> {
 	if (array.every(isNumberValue)) {
 		return filterNumbers(array, condition);
-	} else if (isStringValue) {
+	} else if (array.every(isStringValue)) {
 		return filterStrings(array, condition);
 	}
 }
