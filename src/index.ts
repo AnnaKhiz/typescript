@@ -16,6 +16,8 @@ function filterArray<TType, TCondition>(array: Array<TType>, condition: TConditi
 		return filterNumbers(array, condition);
 	} else if (array.every(isStringValue)) {
 		return filterStrings(array, condition);
+	} else {
+		throw new Error('no such data type')
 	}
 }
 
