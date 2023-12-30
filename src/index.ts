@@ -1,128 +1,98 @@
-// Фільтрація масиву
-// Напишіть узагальнену функцію filterArray(array, condition), яка фільтрує масив елементів на основі наданої умови.
+// Вам потрібно створити тип DeepReadonly який буде робити доступними тільки для читання навіть властивості вкладених обʼєктів.
 
-enum ConditionNumberTypesEnum {
-	EVEN = 'even',
-	ODD = 'odd',
-}
-
-enum ConditionStringTypesEnum {
-	UPPER = 'upper',
-	LOWER = 'lower'
-}
-
-function filterArray<TType, TCondition>(array: Array<TType>, condition: TCondition): Array<TType> {
-	if (array.every(isNumberValue)) {
-		return filterNumbers(array, condition);
-	} else if (array.every(isStringValue)) {
-		return filterStrings(array, condition);
-	} else {
-		throw new Error('no such data type')
+interface IUser {
+	name: string;
+	surname: string;
+	age: number;
+	additional: {
+		isAdmin: boolean;
+		gender: string;
+		address: {
+			city: string;
+			country: string;
+		}
 	}
 }
 
-function filterNumbers<TType, TCondition>(array: Array<TType>, condition: TCondition): Array<TType> {
-	switch (condition) {
-		case 'even':
-			return array.filter((elem: TType) => elem as number % 2 === 0)
-		case 'odd':
-			return array.filter((elem: TType) => elem as number % 2 !== 0)
-		default:
-			throw new Error('no such condition')
+type DeepReadonly<T> = {
+	readonly [K in keyof T]: T[K] | DeepReadonly<T[K]>;
+}
+
+const user: DeepReadonly<IUser> = {
+	name: 'Petr',
+	surname: 'Petrov',
+	age: 33,
+	additional: {
+		isAdmin: false,
+		gender: 'male',
+		address: {
+			city: 'Odessa',
+			country: 'Ukraine',
+		}
+	}
+};
+
+// Вам потрібно створити тип DeepRequireReadonly який буде робити доступними тільки для читання навіть властивості вкладених обʼєктів та ще й робити їх обовʼязковими.
+
+interface IAnimal {
+	name: string;
+	color: string;
+	additional: {
+		race: string;
+		birthYear: number;
 	}
 }
 
-function filterStrings<TType, TCondition>(array: Array<TType>, condition: TCondition): Array<TType> {
-	switch (condition) {
-		case 'upper':
-			return array.filter((elem: TType) => !(elem === (elem as string).toLowerCase()))
-		case 'lower':
-			return array.filter((elem: TType) => elem === (elem as string).toLowerCase())
-		default:
-			throw new Error('no such condition')
+type DeepRequireReadonly<T> = {
+	readonly [K in keyof T]?: T[K] | DeepRequireReadonly<T[K]>;
+}
+
+const animal: DeepRequireReadonly<IAnimal> = {
+	name: 'Bob',
+	color: 'black',
+	additional: {
+		race: 'brit',
+		birthYear: 2020,
 	}
 }
 
-function isNumberValue(value: unknown): value is 'number' {
-	return typeof value === 'number'
+
+// Вам потрібно сворити тип UpperCaseKeys, який буде приводити всі ключи до верхнього регістру.
+
+interface ISeason {
+	name: string;
+	isWarm: boolean;
 }
 
-function isStringValue(value: unknown): value is 'string' {
-	return typeof value === 'string'
+type UpperCaseKeys<T> = {
+	[K in keyof T & string as Capitalize<K>]: T[K]
 }
 
-filterArray([1, 5, 2, 8, 9, 15, 48], ConditionNumberTypesEnum.EVEN)
-filterArray([1, 5, 2, 8, 9, 15, 48], ConditionNumberTypesEnum.ODD)
-filterArray(['hello', 'true', 'sun', 'SKY'], ConditionStringTypesEnum.UPPER)
-filterArray(['hello', 'WORLD', 'sun', 'SKY'], ConditionStringTypesEnum.LOWER)
-
-
-// 	Узагальнений стек
-// Створіть узагальнений клас Stack, який являє собою стек елементів з методами push, pop і peek.
-
-interface IMethods<TItem> {
-	arr: Array<TItem>;
-	push(value: TItem): number;
-	pop(): TItem;
-	peek(): TItem;
+const season: UpperCaseKeys<ISeason> = {
+	Name: 'summer',
+	IsWarm: true
 }
 
-class Stack<TItem> implements IMethods<TItem>{
-	constructor(public arr: Array<TItem>) { }
+// І саме цікаве. Створіть тип ObjectToPropertyDescriptor, який перетворює звичайний обʼєкт на обʼєкт де кожне value є дескриптором.
 
-	public push(value: TItem): number {
-		return this.arr.push(value)
-	};
-
-	public pop(): TItem {
-		return this.arr.pop()
-	};
-
-	public peek(): TItem {
-		return this.arr.at(-1)
-	};
+interface IPerson {
+	name: string;
+	age: number;
+	country: string;
 }
 
-const stack = new Stack([1, 2, 5, 'elem']);
-
-
-// 	Узагальнений словник
-// Створіть узагальнений клас Dictionary, який являє собою словник (асоціативний масив) з методами set, get і has. Обмежте ключі тільки валідними типами для об'єкта
-
-type Type<TValue> = {
-	a: string,
-	b: TValue
+type ObjectToPropertyDescriptor<T> = {
+	[K in keyof T]: PropertyDescriptor
 }
 
-interface IDictionaryIndex<TValue> {
-	[key: string]: TValue
-	| ((x?: string, y?: TValue) => any)
-	| Type<TValue>;
+const someObject: IPerson = {
+	name: 'John',
+	age: 22,
+	country: 'USA'
 }
 
-class Dictionary<TValue> implements IDictionaryIndex<TValue>{
-	[key: string]: TValue
-	| ((x?: string, y?: TValue) => any)
-	| Type<TValue>;
-
-	private dataArray: Type<TValue>;
-
-	constructor() {
-		this.dataArray = {} as Type<TValue>;
-	}
-
-	public set(key: string, value: TValue): void {
-		this.dataArray[key] = value;
-		console.log(this.dataArray)
-	}
-
-	public get(key: string): TValue | any {
-		return this.dataArray[key]
-	}
-	public has(key: string): boolean {
-		return key in this.dataArray
-	}
+const someDescriptionObject: ObjectToPropertyDescriptor<typeof someObject> = {
+	name: { value: 'John', configurable: false, enumerable: false, writable: true },
+	age: { value: 22, configurable: false, enumerable: false, writable: false },
+	country: { value: 'USA', configurable: false, enumerable: false, writable: false }
 }
-
-const dict = new Dictionary<number>()
-
