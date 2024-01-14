@@ -1,98 +1,43 @@
-// Вам потрібно створити тип DeepReadonly який буде робити доступними тільки для читання навіть властивості вкладених обʼєктів.
+//Вам потрібно створити умовний тип, що служить для встановлення типу, що повертається з функції. 
+//Як параметр типу повинен обов'язково виступати функціональний тип.
 
-interface IUser {
-	name: string;
-	surname: string;
-	age: number;
-	additional: {
-		isAdmin: boolean;
-		gender: string;
-		address: {
-			city: string;
-			country: string;
-		}
-	}
+
+type FuncResult<T> = T extends () => infer U ? U : never
+
+function foo(a: number, b: number): number {
+	return a + b
 }
 
-type DeepReadonly<T> = {
-	readonly [K in keyof T]: T[K] | DeepReadonly<T[K]>;
+const x: FuncResult<() => number> = foo(2, 3)
+
+
+//Вам потрібно створити умовний тип, який приймає функціональний тип з одним параметром (або задовільним) 
+//та повертає кортеж, де перше значення - це тип, що функція повертає, а другий - тип її параметру
+
+type FuncTuple<T> = T extends (param: infer U) => infer V ? [V, U] : never
+
+function fooTuple(c: string): string {
+	return `Hello ${c}`
 }
 
-const user: DeepReadonly<IUser> = {
-	name: 'Petr',
-	surname: 'Petrov',
-	age: 33,
-	additional: {
-		isAdmin: false,
-		gender: 'male',
-		address: {
-			city: 'Odessa',
-			country: 'Ukraine',
-		}
-	}
-};
+const y: FuncTuple<(param: string) => string> = [fooTuple('John'), 'string']
 
-// Вам потрібно створити тип DeepRequireReadonly який буде робити доступними тільки для читання навіть властивості вкладених обʼєктів та ще й робити їх обовʼязковими.
 
-interface IAnimal {
-	name: string;
-	color: string;
-	additional: {
-		race: string;
-		birthYear: number;
-	}
+//Створіть тип, який об'єднує властивості двох об'єктів тільки в тому випадку, якщо їхні значення мають 
+//спільний тип. Наприклад: { a: number; b: string } та { b: string; c: boolean } => { b: string; }
+
+type CompareProperty<T, U> = {
+	[K in keyof T & keyof U]: T[K] extends U[K] ? U[K] : never
 }
 
-type DeepRequireReadonly<T> = {
-	readonly [K in keyof T]?: T[K] | DeepRequireReadonly<T[K]>;
-}
-
-const animal: DeepRequireReadonly<IAnimal> = {
-	name: 'Bob',
-	color: 'black',
-	additional: {
-		race: 'brit',
-		birthYear: 2020,
-	}
-}
-
-
-// Вам потрібно сворити тип UpperCaseKeys, який буде приводити всі ключи до верхнього регістру.
-
-interface ISeason {
-	name: string;
-	isWarm: boolean;
-}
-
-type UpperCaseKeys<T> = {
-	[K in keyof T & string as Capitalize<K>]: T[K]
-}
-
-const season: UpperCaseKeys<ISeason> = {
-	Name: 'summer',
-	IsWarm: true
-}
-
-// І саме цікаве. Створіть тип ObjectToPropertyDescriptor, який перетворює звичайний обʼєкт на обʼєкт де кожне value є дескриптором.
-
-interface IPerson {
-	name: string;
-	age: number;
-	country: string;
-}
-
-type ObjectToPropertyDescriptor<T> = {
-	[K in keyof T]: PropertyDescriptor
-}
-
-const someObject: IPerson = {
+const obj1 = {
 	name: 'John',
-	age: 22,
-	country: 'USA'
+	age: 23
 }
 
-const someDescriptionObject: ObjectToPropertyDescriptor<typeof someObject> = {
-	name: { value: 'John', configurable: false, enumerable: false, writable: true },
-	age: { value: 22, configurable: false, enumerable: false, writable: false },
-	country: { value: 'USA', configurable: false, enumerable: false, writable: false }
+const obj2 = {
+	name: 'John',
+	isAdult: true
 }
+
+const someObj: CompareProperty<typeof obj1, typeof obj2> = { name: 'Anna' }
