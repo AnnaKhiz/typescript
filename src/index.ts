@@ -1,43 +1,89 @@
-//Вам потрібно створити умовний тип, що служить для встановлення типу, що повертається з функції. 
-//Як параметр типу повинен обов'язково виступати функціональний тип.
+// Візьміть декоратор DeprecatedMethod і навчіть його працювати з об'єктом, який вміє приймати причину, 
+// через яку його не варто використовувати, і назву методу, яким його можна замінити, якщо це можливо.
 
+// Створіть декоратори MinLength, MaxLength та Email.
 
-type FuncResult<T> = T extends () => infer U ? U : never
+// Використайте попередню версію декораторів і зробіть так, щоб їх можно було використовувати разом.
 
-function foo(a: number, b: number): number {
-	return a + b
+class User {
+	public name: string = 'John';
+	public surname: string = 'Doe';
+
+	private _email: string = '';
+
+	@MinLength(10)
+	@MaxLength(20)
+	@SetEmail
+	public set setEmail(value: string) {
+		this._email = value;
+	}
+
+	@DeprecatedMethod('Old method', 'getFullName')
+	public getName(): void {
+		console.log(`${this.name}`)
+	}
+	public getFullName(): void {
+		console.log(`Full name: ${this.name} ${this.surname}`)
+	}
 }
 
-const x: FuncResult<() => number> = foo(2, 3)
+const user = new User();
+user.getName()
+user.setEmail = 'someemail@gmail.com'
 
 
-//Вам потрібно створити умовний тип, який приймає функціональний тип з одним параметром (або задовільним) 
-//та повертає кортеж, де перше значення - це тип, що функція повертає, а другий - тип її параметру
-
-type FuncTuple<T> = T extends (param: infer U) => infer V ? [V, U] : never
-
-function fooTuple(c: string): string {
-	return `Hello ${c}`
+function DeprecatedMethod(cause = '', replacement = '') {
+	return function <T, A extends any[], R>(
+		originalMethod: (...args: A) => R,
+		context: ClassMethodDecoratorContext
+	): any {
+		function replacementMethod(this: T, ...args: A): R {
+			console.log(`Method - ${String(context.name)} is deprecated. The cause: ${cause}. Use instead: ${replacement}`)
+			return originalMethod.apply(this, args)
+		}
+		return replacementMethod
+	}
 }
 
-const y: FuncTuple<(param: string) => string> = [fooTuple('John'), 'string']
-
-
-//Створіть тип, який об'єднує властивості двох об'єктів тільки в тому випадку, якщо їхні значення мають 
-//спільний тип. Наприклад: { a: number; b: string } та { b: string; c: boolean } => { b: string; }
-
-type CompareProperty<T, U> = {
-	[K in keyof T & keyof U]: T[K] extends U[K] ? U[K] : never
+function MinLength(min: number) {
+	return function <T, V>(
+		originalMethod: (value: V) => void,
+		context: ClassSetterDecoratorContext<T, V>
+	): any {
+		function setProperty(this: T, value: V): void {
+			if (typeof value === 'string' && value.length >= min) {
+				originalMethod.call(this, value)
+			} else {
+				throw new Error(`Min length should be more than - ${min}`)
+			}
+		}
+		return setProperty
+	}
 }
 
-const obj1 = {
-	name: 'John',
-	age: 23
+function MaxLength(max: number) {
+	return function <T, V>(
+		originalMethod: (value: V) => void,
+		context: ClassSetterDecoratorContext<T, V>
+	): any {
+		function setProperty(this: T, value: V): void {
+			if (typeof value === 'string' && value.length <= max) {
+				originalMethod.call(this, value)
+			} else {
+				throw new Error(`Max length should be less than - ${max}`)
+			}
+		}
+		return setProperty
+	}
 }
 
-const obj2 = {
-	name: 'John',
-	isAdult: true
+function SetEmail<T>(
+	originalMethod: (value: string) => void,
+	context: ClassSetterDecoratorContext<T, string>
+) {
+	function setProperty(value: string): void {
+		console.log(`new email = ${value}`)
+		return originalMethod.call(this, value)
+	}
+	return setProperty
 }
-
-const someObj: CompareProperty<typeof obj1, typeof obj2> = { name: 'Anna' }
