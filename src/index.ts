@@ -1,7 +1,7 @@
 // Візьміть декоратор DeprecatedMethod і навчіть його працювати з об'єктом, який вміє приймати причину, 
 // через яку його не варто використовувати, і назву методу, яким його можна замінити, якщо це можливо.
 
-// Створіть декоратори MinLength, MaxLength та Email.
+// Створіть декоратори поля MinLength, MaxLength та Email.
 
 // Використайте попередню версію декораторів і зробіть так, щоб їх можно було використовувати разом.
 
@@ -9,14 +9,10 @@ class User {
 	public name: string = 'John';
 	public surname: string = 'Doe';
 
-	private _email: string = '';
-
 	@MinLength(10)
 	@MaxLength(20)
 	@SetEmail
-	public set setEmail(value: string) {
-		this._email = value;
-	}
+	public email: string = 'someemail@gmail.com';
 
 	@DeprecatedMethod('Old method', 'getFullName')
 	public getName(): void {
@@ -28,9 +24,7 @@ class User {
 }
 
 const user = new User();
-user.getName()
-user.setEmail = 'someemail@gmail.com'
-
+user.getName();
 
 function DeprecatedMethod(cause = '', replacement = '') {
 	return function <T, A extends any[], R>(
@@ -47,12 +41,12 @@ function DeprecatedMethod(cause = '', replacement = '') {
 
 function MinLength(min: number) {
 	return function <T, V>(
-		originalMethod: (value: V) => void,
-		context: ClassSetterDecoratorContext<T, V>
+		originalProperty: undefined,
+		context: ClassFieldDecoratorContext<T, V>
 	): any {
-		function setProperty(this: T, value: V): void {
-			if (typeof value === 'string' && value.length >= min) {
-				originalMethod.call(this, value)
+		function setProperty(this: T, originalValue: V): V {
+			if (String(originalValue).length >= min) {
+				return originalValue
 			} else {
 				throw new Error(`Min length should be more than - ${min}`)
 			}
@@ -63,12 +57,12 @@ function MinLength(min: number) {
 
 function MaxLength(max: number) {
 	return function <T, V>(
-		originalMethod: (value: V) => void,
-		context: ClassSetterDecoratorContext<T, V>
+		originalProperty: undefined,
+		context: ClassFieldDecoratorContext<T, V>
 	): any {
-		function setProperty(this: T, value: V): void {
-			if (typeof value === 'string' && value.length <= max) {
-				originalMethod.call(this, value)
+		function setProperty(this: T, originalValue: V): V {
+			if (String(originalValue).length <= max) {
+				return originalValue
 			} else {
 				throw new Error(`Max length should be less than - ${max}`)
 			}
@@ -77,13 +71,18 @@ function MaxLength(max: number) {
 	}
 }
 
-function SetEmail<T>(
-	originalMethod: (value: string) => void,
-	context: ClassSetterDecoratorContext<T, string>
-) {
-	function setProperty(value: string): void {
-		console.log(`new email = ${value}`)
-		return originalMethod.call(this, value)
+function SetEmail<T, V>(
+	originalProperty: undefined,
+	context: ClassFieldDecoratorContext<T, V>
+): any {
+	function setProperty(this: T, originalValue: V): V {
+		if (String(originalValue).includes('@')) {
+			console.log(`Email: ${originalValue}`)
+			return originalValue
+		} else {
+			throw new Error(`Email must include "@"`)
+		}
 	}
 	return setProperty
 }
+
