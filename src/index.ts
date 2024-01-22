@@ -93,8 +93,8 @@ class TodoListDefault extends TodoList implements IEditNote {
 		this.type = type;
 	}
 
-	public editNote(note: INote): void {
-		this.todoList.map(element => {
+	public editNote(note: INote): any[] {
+		return this.todoList.map(element => {
 			if (element.id === note.id) {
 				element.title = note.title;
 				element.body = note.body;
@@ -113,10 +113,10 @@ class TodoListConfirm extends TodoList implements IEditNote {
 		this.type = type;
 	}
 
-	public editNote(note: INote): void {
+	public editNote(note: INote): any[] | never {
 		const result = confirm(`Confirm editing note`)
 		if (result) {
-			this.todoList.map(element => {
+			return this.todoList.map(element => {
 				if (element.id === note.id) {
 					element.title = note.title;
 					element.body = note.body;
