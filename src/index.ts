@@ -13,7 +13,7 @@
 
 // Також окремо необхідно розширити список можливістю сортування нотаток за статусом або часом створення.
 
-enum NoteTypeEnums {
+enum NoteTypesEnum {
 	DEFAULT = 'default',
 	CONFIRM = 'confirm'
 }
@@ -28,7 +28,7 @@ interface INote {
 }
 
 interface IEditNote {
-	type: NoteTypeEnums;
+	type: NoteTypesEnum;
 }
 
 abstract class TodoList {
@@ -86,9 +86,9 @@ abstract class TodoList {
 
 
 class TodoListDefault extends TodoList implements IEditNote {
-	public readonly type: NoteTypeEnums;
+	public readonly type: NoteTypesEnum;
 
-	constructor(note: INote, type: NoteTypeEnums.DEFAULT) {
+	constructor(note: INote, type: NoteTypesEnum.DEFAULT) {
 		super(note)
 		this.type = type;
 	}
@@ -106,9 +106,9 @@ class TodoListDefault extends TodoList implements IEditNote {
 }
 
 class TodoListConfirm extends TodoList implements IEditNote {
-	public readonly type: NoteTypeEnums.CONFIRM;
+	public readonly type: NoteTypesEnum.CONFIRM;
 
-	constructor(note: INote, type: NoteTypeEnums.CONFIRM) {
+	constructor(note: INote, type: NoteTypesEnum.CONFIRM) {
 		super(note)
 		this.type = type;
 	}
