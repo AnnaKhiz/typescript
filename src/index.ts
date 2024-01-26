@@ -13,7 +13,7 @@
 
 // Також окремо необхідно розширити список можливістю сортування нотаток за статусом або часом створення.
 
-enum NoteTypeEnums {
+enum NoteTypesEnum {
 	DEFAULT = 'default',
 	CONFIRM = 'confirm'
 }
@@ -25,127 +25,109 @@ interface INote {
 	dateCreate: number;
 	dateEdit: number;
 	isFinished: boolean;
+	finishNote(id: number): void;
+	editNote(note: INote): void;
 }
 
-interface IEditNote {
-	type: NoteTypeEnums;
-}
+class TodoList {
+	protected todoList: Array<Note | NoteConfirm> = [];
 
-abstract class TodoList {
-	public todoList: INote[];
-	public title: string;
-	public body: string;
-
-	protected readonly id: number;
-	protected readonly dateCreate: number;
-	protected dateEdit: number;
-	protected isFinished: boolean;
-
-	constructor(note: INote) {
-		this.todoList = [note];
-		this.id = note.id;
-		this.title = note.title;
-		this.body = note.body;
-		this.dateCreate = +Date.now();
-		this.dateEdit = note.dateEdit;
-		this.isFinished = note.isFinished;
-	}
-
-	public get allTodoListNotes(): INote[] {
+	public get allTodoListNotes(): (Note | NoteConfirm)[] {
 		return this.todoList
 	}
 
-	protected checkAllNotFinishedNotes(): INote[] {
-		return this.todoList.filter(note => note.isFinished === false)
+	protected checkAllNotFinishedNotes(): void {
+		this.todoList.filter(note => note.isFinished === false)
 	}
 
 	protected countAllNotes(): number {
 		return this.todoList.length
 	}
 
-	public finishNote(id: number) {
-		this.todoList.filter(note => note.id === id && note.isFinished === false ? note.isFinished = true : note.isFinished);
-		this.countAllNotes();
-		this.checkAllNotFinishedNotes();
+	public finishNote(id: number): void {
+		const note = this.todoList.find(element => element.id === id);
+		if (!note) throw new Error('Incorrect ID');
+
+		note.finishNote()
 	}
 
-	public getNoteInfo(id: number): INote[] {
-		return this.todoList.filter(note => note.id === id)
+	public getNoteInfo(id: number): void {
+		this.todoList.filter(note => note.id === id)
 	}
 
-	public addNote(note: INote): void {
+	public addNote(note: Note | NoteConfirm): void {
 		this.todoList.push(note)
 	}
 
-	public deleteNote(id: number): INote[] {
-		return this.todoList.filter(element => element.id !== id)
+	public deleteNote(id: number): void {
+		this.todoList.filter(element => element.id !== id)
 	}
 
-	public abstract editNote(note: INote): void;
+	public editNote(id: number, payload: Note): void {
+		const note = this.todoList.find(element => element.id === id);
+
+		if (!note) throw new Error('Incorrect ID');
+
+		note.editNote(payload);
+	};
+
+	public findTodoNote(field: string, value: string | number | boolean): Note | NoteConfirm {
+		const note = this.todoList.find(element => element[field] === value);
+
+		if (!note) throw new Error('Incorrect ID');
+
+		return note
+	}
+
+	public sortTodoList(status: string): void {
+		this.todoList.sort((a, b) => String(a[status]).localeCompare(String(b[status])))
+	}
+
 }
 
+class Note implements INote {
+	public isFinished = false;
 
-class TodoListDefault extends TodoList implements IEditNote {
-	public readonly type: NoteTypeEnums;
+	constructor(
+		public readonly id: number,
+		public title: string,
+		public body: string,
+		public readonly dateCreate: number,
+		public dateEdit: number,
+		public type: NoteTypesEnum.DEFAULT
+	) { }
 
-	constructor(note: INote, type: NoteTypeEnums.DEFAULT) {
-		super(note)
-		this.type = type;
+	public editNote(note: Note): void {
+		Object.assign(this, note);
 	}
 
-	public editNote(note: INote): any[] {
-		return this.todoList.map(element => {
-			if (element.id === note.id) {
-				element.title = note.title;
-				element.body = note.body;
-				element.dateEdit = note.dateEdit;
-				element.isFinished = note.isFinished;
-			}
-		});
-	}
-}
-
-class TodoListConfirm extends TodoList implements IEditNote {
-	public readonly type: NoteTypeEnums.CONFIRM;
-
-	constructor(note: INote, type: NoteTypeEnums.CONFIRM) {
-		super(note)
-		this.type = type;
-	}
-
-	public editNote(note: INote): any[] | never {
-		const result = confirm(`Confirm editing note`)
-		if (result) {
-			return this.todoList.map(element => {
-				if (element.id === note.id) {
-					element.title = note.title;
-					element.body = note.body;
-					element.dateEdit = note.dateEdit;
-					element.isFinished = note.isFinished;
-				}
-			})
-		} else {
-			throw new Error('You didnt confirm editing')
-		}
+	public finishNote(): void {
+		this.isFinished = true;
 	}
 }
 
-class FindTodoNote extends TodoList {
+class NoteConfirm implements INote {
+	public isFinished = false;
+
+	constructor(
+		public readonly id: number,
+		public title: string,
+		public body: string,
+		public readonly dateCreate: number,
+		public dateEdit: number,
+		public type: NoteTypesEnum.CONFIRM
+	) { }
+
 	public editNote(note: INote): void {
-		throw new Error('This class doesnt support editing')
+		if (this.isFinished) return;
+		Object.assign(this, note);
 	}
 
-	public findTodoNote(field: string, value: string | number | boolean): INote[] {
-		return this.todoList.filter(todo => todo[field] === value)
-	}
-}
-
-class SortTodoNote extends TodoList {
-	public editNote(note: INote): void {
-		throw new Error('This class doesnt support editing')
+	public finishNote(): void {
+		this.isFinished = true;
 	}
 
-	public sortTodoNote(status: string): INote[] {
-		return this.todoList.sort((a, b) => String(a[status]).localeCompare(String(b[status])))
+	public confirm(value: boolean): void {
+		this.isFinished = value
 	}
 }
