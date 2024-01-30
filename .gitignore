@@ -49,3 +49,5 @@ Thumbs.db
 .vscode/settings.json
 .vscode/settings.json
 results/*
+/src/index.html
+/src/index.js
