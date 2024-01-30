@@ -3,10 +3,6 @@
 // Додайте до нашої програми компонент Bank, який вміє створювати ти закривати акаунти для клієнтів. 
 // Кліент може мати декілька аккаунтів з різними типами валют. Bank повинен бути Singleton!
 
-//  Для тих, кому цікаво ускладнити - додайте можливість ставити транзацкції у чергу та мати можливість 
-// їх повторювати чи відміняти (Command)
-
-
 interface IBankClient {
 	firstName: string;
 	lastName: string;
@@ -20,7 +16,6 @@ class BankClient implements IBankClient {
 		private readonly _lastName: string,
 		private readonly _bday: number,
 		private _accountNumber: string | null = null,
-
 	) {
 		this._accounts = [{ iban: '', currency: '' }];
 	}
@@ -45,7 +40,6 @@ class BankClient implements IBankClient {
 	public get lastName(): string {
 		return this._lastName
 	}
-
 }
 
 interface IAccount {
@@ -88,15 +82,14 @@ class BankAccount {
 
 	public withdraw(amount: number): void {
 		if (this.balance < amount) throw new Error(`${this.holderName} you dont have enough money for withdraw`)
-
 		this.balance -= amount;
-
 	}
 
 	public getNumber(currency: string): IAccount[] {
-		return this.iban.filter(num => num.currency === 'string' ? num.iban : false)
+		return this.iban.filter(num => num.currency === currency ? num.iban : false)
 	}
 
+	//я так поняла, что нужно добавить еще счета существующему клиенту
 	public createAccount(client: IBankClient, account: IAccount) {
 		if (client.firstName !== this.holder.firstName || client.lastName !== this.holder.lastName) {
 			throw new Error('No such client')
@@ -105,18 +98,12 @@ class BankAccount {
 		}
 	}
 
-	
+
 }
 
 const bankAccount = new BankAccount({ firstName: 'John', lastName: 'Doe' }, 'UAH', 0)
 
-
-bankAccount.createAccount({ firstName: 'John', lastName: 'Doe' }, { iban: bankAccount.createIBAN('US'), currency: 'USD' })
-// bankAccount.createAccount({ firstName: 'John', lastName: 'Doe' }, { iban: bankAccount.createIBAN('EU'), currency: 'EUR' })
-// bankAccount.createAccount({ firstName: 'John', lastName: 'Doe' }, { iban: bankAccount.createIBAN('UA'), currency: 'UAH' })
-bankAccount.info
-bankAccount.close = false
-bankAccount.info
+bankAccount.createAccount({ firstName: 'John', lastName: 'Doe' }, { iban: bankAccount.createIBAN('US'), currency: 'USD' });
 
 //Singleton
 class Bank {
