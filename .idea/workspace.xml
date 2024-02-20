@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:homework_13" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="515e4fab-3461-4698-8cb1-2c182c7199fc" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="homework_12" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2YSCRrLElM64Knh1ipaSOlFcD3I" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="js.linters.configure.manually.selectedtslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\Anyta\Desktop\TypeScript\typescript\node_modules\prettier" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.tslint" />
+    <property name="ts.external.directory.path" value="C:\Users\Anyta\Desktop\Front end\TypeScript\typescript\node_modules\typescript\lib" />
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+    <configuration name="index.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/typescript/src/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Lesson_2/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.ts" type="NodeJSConfigurationType" temporary="true" node-parameters="--require ts-node/register " path-to-js-file="$PROJECT_DIR$/src/index.ts" working-dir="$PROJECT_DIR$/src">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html (1)" />
+        <item itemvalue="Node.js.index.ts" />
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="515e4fab-3461-4698-8cb1-2c182c7199fc" name="Default Changelist" comment="" />
+      <created>1700509588655</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700509588655</updated>
+      <workItem from="1700509592577" duration="9442000" />
+      <workItem from="1700569674934" duration="4600000" />
+      <workItem from="1700574568590" duration="6000" />
+      <workItem from="1700574605515" duration="2775000" />
+      <workItem from="1700761593690" duration="599000" />
+      <workItem from="1700914476683" duration="21157000" />
+      <workItem from="1701546205896" duration="427000" />
+      <workItem from="1701605826222" duration="20405000" />
+      <workItem from="1702036695029" duration="7000" />
+      <workItem from="1702038750970" duration="1664000" />
+      <workItem from="1702368771489" duration="4093000" />
+      <workItem from="1702818069809" duration="5957000" />
+      <workItem from="1703019517293" duration="1353000" />
+      <workItem from="1703269828439" duration="3837000" />
+      <workItem from="1703944277920" duration="730000" />
+      <workItem from="1705916346438" duration="1118000" />
+      <workItem from="1706279584837" duration="955000" />
+      <workItem from="1706355647274" duration="9000" />
+    </task>
+    <task id="LOCAL-00001" summary="add project">
+      <created>1700574722504</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700574722504</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add project">
+      <created>1700574774034</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700574774034</updated>
+    </task>
+    <task id="LOCAL-00003" summary="edit Group">
+      <created>1700578317252</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700578317252</updated>
+    </task>
+    <task id="LOCAL-00004" summary="done hm2">
+      <created>1700940906568</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700940906569</updated>
+    </task>
+    <task id="LOCAL-00005" summary="done">
+      <created>1701612010992</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701612010992</updated>
+    </task>
+    <task id="LOCAL-00006" summary="done">
+      <created>1701804433253</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701804433253</updated>
+    </task>
+    <task id="LOCAL-00007" summary="done">
+      <created>1702039034793</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702039034794</updated>
+    </task>
+    <task id="LOCAL-00008" summary="done">
+      <created>1702039439381</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1702039439381</updated>
+    </task>
+    <task id="LOCAL-00009" summary="done">
+      <created>1702386564360</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1702386564360</updated>
+    </task>
+    <task id="LOCAL-00010" summary="done">
+      <created>1702823424329</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1702823424329</updated>
+    </task>
+    <task id="LOCAL-00011" summary="done">
+      <created>1703019575524</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1703019575524</updated>
+    </task>
+    <task id="LOCAL-00012" summary="done">
+      <created>1703069739461</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1703069739461</updated>
+    </task>
+    <task id="LOCAL-00013" summary="done">
+      <created>1703333101461</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703333101461</updated>
+    </task>
+    <task id="LOCAL-00014" summary="done">
+      <created>1703333292226</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703333292226</updated>
+    </task>
+    <task id="LOCAL-00015" summary="done">
+      <created>1703333383177</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703333383177</updated>
+    </task>
+    <task id="LOCAL-00016" summary="done">
+      <created>1703944348079</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1703944348079</updated>
+    </task>
+    <task id="LOCAL-00017" summary="done">
+      <created>1705916366625</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1705916366625</updated>
+    </task>
+    <task id="LOCAL-00018" summary="done">
+      <created>1705916583746</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705916583746</updated>
+    </task>
+    <task id="LOCAL-00019" summary="edited">
+      <created>1706279661902</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1706279661902</updated>
+    </task>
+    <task id="LOCAL-00020" summary="edited">
+      <created>1706279970510</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1706279970510</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="homework_13" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add project" />
+    <MESSAGE value="edit Group" />
+    <MESSAGE value="done hm2" />
+    <MESSAGE value="done" />
+    <MESSAGE value="edited" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="678" y="188" key="#TypeScript" timestamp="1700566915015">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="678" y="188" key="#TypeScript/0.0.1920.1040@0.0.1920.1040" timestamp="1700566915015" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1701546258678">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1701546258678" />
+    <state x="707" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1701610081962">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="707" y="374" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1920.1040@0.0.1920.1040" timestamp="1701610081962" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1706279960806">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1706279960806" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1701610038480">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1701610038480" />
+    <state width="1877" height="207" key="GridCell.Tab.0.bottom" timestamp="1702032226832">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="207" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226832" />
+    <state width="1877" height="207" key="GridCell.Tab.0.center" timestamp="1702032226832">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="207" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226832" />
+    <state width="1877" height="207" key="GridCell.Tab.0.left" timestamp="1702032226832">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="207" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226832" />
+    <state width="1877" height="207" key="GridCell.Tab.0.right" timestamp="1702032226832">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="207" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226832" />
+    <state width="1877" height="338" key="GridCell.Tab.1.bottom" timestamp="1702032226820">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226820" />
+    <state width="1877" height="338" key="GridCell.Tab.1.center" timestamp="1702032226820">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226820" />
+    <state width="1877" height="338" key="GridCell.Tab.1.left" timestamp="1702032226820">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226820" />
+    <state width="1877" height="338" key="GridCell.Tab.1.right" timestamp="1702032226820">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226820" />
+    <state width="1877" height="338" key="GridCell.Tab.2.bottom" timestamp="1702032226821">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226821" />
+    <state width="1877" height="338" key="GridCell.Tab.2.center" timestamp="1702032226821">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.center/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226821" />
+    <state width="1877" height="338" key="GridCell.Tab.2.left" timestamp="1702032226821">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.left/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226821" />
+    <state width="1877" height="338" key="GridCell.Tab.2.right" timestamp="1702032226821">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="338" key="GridCell.Tab.2.right/0.0.1920.1040@0.0.1920.1040" timestamp="1702032226821" />
+    <state x="267" y="85" key="MergeDialog" timestamp="1706279686265">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="267" y="85" key="MergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1706279686265" />
+    <state x="848" y="387" width="389" height="265" key="MultipleFileMergeDialog" timestamp="1706279686273">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="848" y="387" width="389" height="265" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1706279686273" />
+    <state x="461" y="164" key="SettingsEditor" timestamp="1701610063012">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1701610063012" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1706279976519">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1706279976519" />
+    <state x="635" y="253" key="VcsDiffUtil.ChangesDialog" timestamp="1706279908749">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="635" y="253" key="VcsDiffUtil.ChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1706279908749" />
+    <state x="677" y="327" key="jetbrains.nodejs.interpreters-dialog" timestamp="1701610042824">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="677" y="327" key="jetbrains.nodejs.interpreters-dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1701610042824" />
+  </component>
+</project>
