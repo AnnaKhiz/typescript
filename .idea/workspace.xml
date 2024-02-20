@@ -25,7 +25,12 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="515e4fab-3461-4698-8cb1-2c182c7199fc" name="Default Changelist" comment="" />
+    <list default="true" id="515e4fab-3461-4698-8cb1-2c182c7199fc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -115,6 +120,7 @@
       <workItem from="1705916346438" duration="1118000" />
       <workItem from="1706279584837" duration="955000" />
       <workItem from="1706355647274" duration="9000" />
+      <workItem from="1708432923059" duration="346000" />
     </task>
     <task id="LOCAL-00001" summary="add project">
       <created>1700574722504</created>
@@ -306,6 +312,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="678" y="188" key="#TypeScript/0.0.1920.1040@0.0.1920.1040" timestamp="1700566915015" />
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser" timestamp="1708433155261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="235" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1708433155261" />
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1701546258678">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
