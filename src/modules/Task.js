@@ -11,7 +11,7 @@ class Task {
     // private readonly _id = Date.now();
     _id = 1;
     date_created = new Date().toISOString();
-    employee;
+    _employee;
     constructor(_name, _description, _type, _priority, _status, term) {
         this._name = _name;
         this._description = _description;
@@ -38,9 +38,18 @@ class Task {
     get status() {
         return this._status;
     }
-    //назначить исполнителя задаче
+    set status(status) {
+        this._status = status;
+    }
+    get employee() {
+        return this._employee;
+    }
     set setEmployee(person) {
-        this.employee = person;
+        this._employee = person;
+    }
+    assignEmployee(employee) {
+        this._employee = employee;
+        employee.tasks.push(this);
     }
 }
 exports.Task = Task;

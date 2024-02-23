@@ -31,8 +31,12 @@ class Employee {
     set tasks(task) {
         this.tasks.push(task);
     }
-    get employeeFullName() {
-        return `${this.last_name} ${this.first_name}`;
+    set position(position) {
+        this._position = position;
+    }
+    assignTask(task) {
+        this._tasks.push(task);
+        task.setEmployee = this;
     }
 }
 exports.Employee = Employee;

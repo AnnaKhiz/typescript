@@ -14,7 +14,7 @@ export class Task implements ITask {
 	// private readonly _id = Date.now();
 	private readonly _id = 1;
 	private readonly date_created = new Date().toISOString();
-	private employee: Employee;
+	private _employee: Employee;
 
 	constructor(
 		public readonly _name: string,
@@ -23,39 +23,48 @@ export class Task implements ITask {
 		private _priority: TaskPrioritiesEnum,
 		private _status: TaskStatusesEnum,
 		public readonly term: string,
-
 	) { }
 
 	public get id(): number {
-		return this._id
+		return this._id;
 	}
 
 	public get name(): string {
-		return this._name
+		return this._name;
 	}
 
 	public get description(): string {
-		return this._description
+		return this._description;
 	}
 
 	public get type(): TaskTypesEnum {
-		return this._type
+		return this._type;
 	}
 
 	public get priority(): TaskPrioritiesEnum {
-		return this._priority
+		return this._priority;
 	}
 
 	public get status(): TaskStatusesEnum {
-		return this._status
+		return this._status;
 	}
 
-	//назначить исполнителя задаче
+	public set status(status: TaskStatusesEnum) {
+		this._status = status;
+	}
+
+	public get employee(): Employee {
+		return this._employee;
+	}
+
 	public set setEmployee(person: Employee) {
-		this.employee = person;
+		this._employee = person;
 	}
 
-
+	public assignEmployee(employee: Employee): void {
+		this._employee = employee;
+		employee.tasks.push(this);
+	}
 
 }
 

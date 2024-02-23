@@ -7,7 +7,6 @@ interface IEmployee {
 	tasks: Task[]
 }
 
-
 export class Employee implements IEmployee {
 	// private readonly _id = Date.now();
 	private readonly _id = 23;
@@ -17,38 +16,42 @@ export class Employee implements IEmployee {
 		public readonly _first_name: string,
 		public readonly _last_name: string,
 		private _position: string,
-	) { }
+	) {}
 
 	public get id(): number {
-		return this._id
+		return this._id;
 	}
 
 	public get first_name(): string {
-		return this._first_name
+		return this._first_name;
 	}
 
 	public get last_name(): string {
-		return this._last_name
+		return this._last_name;
 	}
 
 	public get position(): string {
-		return this._position
+		return this._position;
 	}
 
 	public get tasks(): Task[] {
-		return this._tasks
+		return this._tasks;
 	}
 
-	public set tasks(task: Task) {
-		this.tasks.push(task)
+	private set tasks(task: Task) {
+		this.tasks.push(task);
 	}
 
-	public get employeeFullName(): string {
-		return `${this.last_name} ${this.first_name}`
+	public set position(position: string) {
+		this._position = position;
 	}
 
-
+	public assignTask(task: Task): void {
+		this._tasks.push(task);
+		task.setEmployee = this;
+	}
 }
+
 
 
 
