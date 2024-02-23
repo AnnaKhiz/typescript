@@ -8,15 +8,14 @@ interface IEmployee {
 }
 
 export class Employee implements IEmployee {
-	// private readonly _id = Date.now();
-	private readonly _id = 23;
+	private readonly _id = Date.now();
 	private _tasks: Task[] = [];
 
 	constructor(
 		public readonly _first_name: string,
 		public readonly _last_name: string,
 		private _position: string,
-	) {}
+	) { }
 
 	public get id(): number {
 		return this._id;

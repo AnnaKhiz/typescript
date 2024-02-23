@@ -11,8 +11,7 @@ interface ITask {
 }
 
 export class Task implements ITask {
-	// private readonly _id = Date.now();
-	private readonly _id = 1;
+	private readonly _id = Date.now();
 	private readonly date_created = new Date().toISOString();
 	private _employee: Employee;
 
