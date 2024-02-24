@@ -1,7 +1,4 @@
 import { Employee } from "../modules/Employee";
-import { TaskTypesEnum, TaskPrioritiesEnum, TaskStatusesEnum } from "../enums/enum";
-
-
 
 describe('Employee', () => {
 	let employee: Employee;

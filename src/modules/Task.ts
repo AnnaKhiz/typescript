@@ -12,7 +12,7 @@ interface ITask {
 
 export class Task implements ITask {
 	private readonly _id = Date.now();
-	private readonly date_created = new Date().toISOString();
+	private readonly date_created: string = new Date().toISOString();
 	private _employee: Employee;
 
 	constructor(
@@ -48,12 +48,12 @@ export class Task implements ITask {
 		return this._status;
 	}
 
-	public set status(status: TaskStatusesEnum) {
-		this._status = status;
-	}
-
 	public get employee(): Employee {
 		return this._employee;
+	}
+
+	public set status(status: TaskStatusesEnum) {
+		this._status = status;
 	}
 
 	public set setEmployee(person: Employee) {

@@ -37,7 +37,7 @@ export class Employee implements IEmployee {
 		return this._tasks;
 	}
 
-	private set tasks(task: Task) {
+	public set tasks(task: Task) {
 		this.tasks.push(task);
 	}
 

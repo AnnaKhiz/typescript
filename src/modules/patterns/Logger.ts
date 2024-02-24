@@ -11,7 +11,7 @@ export class Logger {
 		return Logger.instance;
 	}
 
-	log(message: string): void {
+	public log(message: string): void {
 		console.log(`[LOG:]: ${message}`);
 		this.logs.push(message);
 	}
@@ -20,7 +20,7 @@ export class Logger {
 		return this.logs
 	}
 
-	private clearLogs(): void {
+	public clearLogs(): void {
 		this.logs = [];
 	}
 }

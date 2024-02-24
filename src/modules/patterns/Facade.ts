@@ -1,12 +1,10 @@
 import { TaskStatusesEnum } from "../../enums/enum";
 import { TaskManager } from "../TaskManager";
 import { Task } from "../Task";
-import { manager } from "../TaskManager";
-
 
 export class Facade {
 	private tasks: Task[];
-	private taskManager: TaskManager = manager;
+	private taskManager: TaskManager = new TaskManager('admin');
 
 	constructor() {
 		this.tasks = this.taskManager.taskList;

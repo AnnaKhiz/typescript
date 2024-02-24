@@ -1,28 +1,21 @@
 import { Task } from "./Task";
 import { Employee } from "./Employee";
-import { TaskTypesEnum, TaskPrioritiesEnum, TaskStatusesEnum } from "../enums/enum";
+import { TaskStatusesEnum } from "../enums/enum";
 import { TaskFilter } from "./TaskFilter";
-// import { TaskSort } from "./TaskSort";
 import { SortType } from "../types/types";
 import { TaskList } from "./TaskList";
-import { EmployeeList } from "./EmployeeList";
-// import { Facade } from "./patterns/Facade";
-// import { EmployeeManager } from "./EmployeeManager";
 import { EmployeeRole } from "../types/types";
-import { Logger } from "./Logger";
+import { Logger } from "./patterns/index";
 
 export class TaskManager {
 	private _tasks: TaskList | null = null;
-	private _employees: EmployeeList | null = null;
 	private logger: Logger = Logger.getInstance();
-	// private facade: Facade;
 
 	constructor(private _role: EmployeeRole) {
 		this._tasks = new TaskList();
-		this._employees = new EmployeeList();
 	}
 
-	update(message: string): void {
+	public update(message: string): void {
 		this.logger.log(`[Observer]: ${message}`);
 	}
 
@@ -47,7 +40,7 @@ export class TaskManager {
 		this._tasks.taskList = task;
 	}
 
-	setEmployeeToTask(taskId: number, employee: Employee): void {
+	public setEmployeeToTask(taskId: number, employee: Employee): void {
 		if (!this.canManageTasks()) {
 			this.logger.log(`Got error: Your permission level is not enough for managing tasks`);
 			throw new Error('Your permission level is not enough for managing tasks');
@@ -57,7 +50,7 @@ export class TaskManager {
 		}
 	}
 
-	editTask(id: number, task: Task): TaskList | Task {
+	public editTask(id: number, task: Task): TaskList | Task {
 
 		if (!this.canManageTasks()) {
 			this.logger.log('Got error: Your permission level is not enough for editing tasks');
@@ -86,7 +79,7 @@ export class TaskManager {
 		return this._tasks;
 	}
 
-	deleteTask(id: number): TaskList {
+	public deleteTask(id: number): TaskList {
 		if (!this.canManageTasks()) {
 			this.logger.log('Got error: Your permission level is not enough for deliting tasks');
 			throw new Error('Your permission level is not enough for deliting tasks');
@@ -104,7 +97,7 @@ export class TaskManager {
 		return this._tasks;
 	}
 
-	renewTaskStatus(id: number, status: TaskStatusesEnum): TaskList | boolean {
+	public renewTaskStatus(id: number, status: TaskStatusesEnum): TaskList | boolean {
 		if (!this.canManageTasks()) {
 
 			this.logger.log('Got error: Your permission level is not enough for renewiting tasks');
@@ -115,7 +108,7 @@ export class TaskManager {
 
 			if (element === undefined || element.employee === undefined) {
 				this.logger.log('Got error: You can not change task status if it doesnt have employee');
-				throw new Error('You can not change task status if it doesnt have employee');
+				throw new Error('You can not change task status if it doesn\'t have employee');
 			}
 
 			element.status = status;
@@ -126,7 +119,7 @@ export class TaskManager {
 		return this._tasks;
 	}
 
-	filterTasks(filter: TaskFilter): Task[] {
+	public filterTasks(filter: TaskFilter): Task[] {
 		return this._tasks.taskList.filter(task => {
 			return (
 				(!filter.type || task.type === filter.type) &&
@@ -138,7 +131,7 @@ export class TaskManager {
 		});
 	}
 
-	sortTasks(field: SortType): Task[] {
+	public bubbleSortTasks(field: SortType): Task[] {
 		let length = this._tasks.taskList.length;
 		let task = this._tasks.taskList;
 
@@ -154,54 +147,32 @@ export class TaskManager {
 		return this._tasks.taskList;
 	}
 
-	canManageTasks(): boolean {
+	public choiceSortTasks(field: SortType): Task[] {
+		const tasks = this._tasks.taskList;
+		const length = tasks.length;
+
+		for (let i = 0; i < length - 1; i++) {
+			let minIndex = i;
+
+			for (let j = i + 1; j < length; j++) {
+				if (tasks[j][field] < tasks[minIndex][field]) {
+					minIndex = j;
+				}
+			}
+
+			if (minIndex !== i) {
+				[tasks[i], tasks[minIndex]] = [tasks[minIndex], tasks[i]];
+			}
+		}
+
+		return tasks;
+	}
+
+	private canManageTasks(): boolean {
 		return this.role === 'admin';
 	}
 
 }
-
-// const emp = new EmployeeManager()
-// const mediator = new Mediator()
-// mediator.setMediator(emp)
-export const manager = new TaskManager('admin')
-
-//new Task('Task 1', 'This is task number one', TaskTypesEnum.STORY, TaskPrioritiesEnum.HIGH, TaskStatusesEnum.NEW, 'week'),
-// new Employee('John', 'Doe', 'engineer')
-
-// manager.createNewTask(new Task('Task 1', 'This is task number one', TaskTypesEnum.STORY, TaskPrioritiesEnum.HIGH, TaskStatusesEnum.FINISHED, 'week'))
-// manager.createNewTask(new Task('Task 2', 'This is task number two', TaskTypesEnum.BUG, TaskPrioritiesEnum.LOW, TaskStatusesEnum.FINISHED, 'day'))
-manager.createNewTask(new Task('Task 3', 'This is task number three', TaskTypesEnum.TASK, TaskPrioritiesEnum.MEDIUM, TaskStatusesEnum.FINISHED, 'month'))
-manager.setEmployeeToTask(1, new Employee('John', 'Doe', 'engineer'))
-manager.editTask(1, new Task('Task 285', 'This is task number dfgdfgdfg', TaskTypesEnum.STORY, TaskPrioritiesEnum.LOW, TaskStatusesEnum.NEW, 'day'))
-
-console.log(manager.taskList)
-// console.log(manager)
-// console.log(manager.taskWithEmployee)
-
-// const person = new Employee('Anna', 'Khizhniak', 'dev');
-// console.log(person.tasks)
-
-// manager.addToEmployeeList(person)
-// console.log(manager.setTaskToEmployee(23, new Task('Task 2', 'This is task number two', TaskTypesEnum.BUG, TaskPrioritiesEnum.LOW, TaskStatusesEnum.NEW, '2 weeks')))
-// console.log(manager.employeeList)
-// console.log(person.tasks)
-
-// manager.editTask(1, new Task('Task edited', 'This is task number one', TaskTypesEnum.STORY, TaskPrioritiesEnum.HIGH, TaskStatusesEnum.NEW, 'week'))
-// manager.deleteTask(1)
-// console.log(manager.taskList)
-
-manager.renewTaskStatus(1, TaskStatusesEnum.FINISHED)
-console.log(manager.taskList)
-
-// const filter = new TaskFilter();
-// filter.status = TaskStatusesEnum.NEW;
-// filter.type = TaskTypesEnum.TASK;
-// manager.filterTasks(filter)
-
-
-
-
-// manager.sortTasks('term')
 
 
 
