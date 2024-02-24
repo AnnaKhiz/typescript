@@ -1,2 +1,2 @@
 # typescript
-ts homeworks
+Документация к курсовой работе в папке docs
